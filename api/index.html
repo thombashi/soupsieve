@@ -653,35 +653,50 @@
                 
                 
                 <h1 id="api">API<a class="headerlink" href="#api" title="Permanent link"></a></h1>
-<p>Soup Sieve uses a subset of the CSS4 selector specification to detect and filter elements. To learn more about which specific selectors are implemented, see <a href="../selectors/">CSS Selectors</a>.</p>
-<p>Soup Sieve will detect the document type being used from the Beautiful Soup object that is given to it, and depending on the document type, its behavior may be slightly different:</p>
+<p>Soup Sieve uses a subset of the CSS4 selector specification to detect and filter elements. To learn more about which
+specific selectors are implemented, see <a href="../selectors/">CSS Selectors</a>.</p>
+<p>Soup Sieve will detect the document type being used from the Beautiful Soup object that is given to it, and depending on
+the document type, its behavior may be slightly different:</p>
 <ul>
 <li>
-<p>All HTML document types (HTML, HTML5, and XHTML) will have their tag names and attribute names treated without case sensitivity, like most browsers do. Though XHTML is XML, which traditionally is case sensitive, it will still be treated like HTML in this respect.</p>
+<p>All HTML document types (HTML, HTML5, and XHTML) will have their tag names and attribute names treated without case
+sensitivity, like most browsers do. Though XHTML is XML, which traditionally is case sensitive, it will still be treated
+like HTML in this respect.</p>
 </li>
 <li>
 <p>XML document types will have their tag names and attribute names treated with case sensitivity.</p>
 </li>
 <li>
-<p>HTML5, XHTML and XML document types will have namespaces evaluated per the document's support (provided via the parser).</p>
-<p><code>html5lib</code> provides proper namespaces for HTML5, but <code>lxml</code> will not. If you need namespace support for HTML5, consider using <code>html5lib</code>.</p>
-<p>For XML, <code>lxml</code> will provide proper namespaces. It is generally suggested that <code>lxml</code> is used to parse XHTML documents. Some additional configuration is required when using namespaces, see <a href="#namespaces">Namespace</a> for more information.</p>
+<p>HTML5, XHTML and XML document types will have namespaces evaluated per the document's support (provided via the
+parser).</p>
+<p><code>html5lib</code> provides proper namespaces for HTML5, but <code>lxml</code> will not. If you need namespace support for HTML5,
+consider using <code>html5lib</code>.</p>
+<p>For XML, <code>lxml</code> will provide proper namespaces. It is generally suggested that <code>lxml</code> is used to parse XHTML
+documents. Some additional configuration is required when using namespaces, see <a href="#namespaces">Namespace</a> for more
+information.</p>
 </li>
 <li>
-<p>While attribute values are generally treated as case sensitive, HTML5, XHTML, and HTML treat the <code>type</code> attribute special. The <code>type</code> attribute's value is always case insensitive. This is generally how most browsers treat <code>type</code>. If you need <code>type</code> to be sensitive, you can use the <code>s</code> flag: <code class="codehilite"><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="nt">s</span><span class="o">]</span></code>.</p>
+<p>While attribute values are generally treated as case sensitive, HTML5, XHTML, and HTML treat the <code>type</code> attribute
+special. The <code>type</code> attribute's value is always case insensitive. This is generally how most browsers treat <code>type</code>. If
+you need <code>type</code> to be sensitive, you can use the <code>s</code> flag: <code class="codehilite"><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="nt">s</span><span class="o">]</span></code>.</p>
 </li>
 </ul>
-<p>As far as the API is concerned, Soup Sieve mimics Beautiful Soup's original API at the time of writing this, which is why the names <code>select</code> and <code>select_one</code> are used. As of today, Beautiful Soup has agreed to include Soup Sieve as the official select library which is slated for the 4.7.0 release.</p>
+<p>As far as the API is concerned, Soup Sieve mimics Beautiful Soup's original API at the time of writing this, which is
+why the names <code>select</code> and <code>select_one</code> are used. As of today, Beautiful Soup has agreed to include Soup Sieve as the
+official select library which is slated for the 4.7.0 release.</p>
 <p>Soup Sieve will always be available as an external API as well for more controlled tag selection if needed.</p>
 <h2 id="flags">Flags<a class="headerlink" href="#flags" title="Permanent link"></a></h2>
-<p>Early in development, flags were used to specify document type, but as of 1.0.0, there are no flags used at this time, but the parameter is provided for potential future use.</p>
+<p>Early in development, flags were used to specify document type, but as of 1.0.0, there are no flags used at this time,
+but the parameter is provided for potential future use.</p>
 <h2 id="soupsieveselect_one"><code>soupsieve.select_one()</code><a class="headerlink" href="#soupsieveselect_one" title="Permanent link"></a></h2>
 <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">namespaces</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Select the specified tags.&quot;&quot;&quot;</span>
 </pre></div>
 
-<p><code>select_one</code> will return the first tag under the given tag that matches the given CSS selectors provided, or it will return <code>None</code> if a suitable tag was not found.</p>
-<p><code>select_one</code> accepts a CSS selector string, a <code>Tag</code>/<code>BeautifulSoup</code> object, an optional <a href="#namespaces">namespace</a> dictionary, and <code>flags</code>.</p>
+<p><code>select_one</code> will return the first tag under the given tag that matches the given CSS selectors provided, or it will
+return <code>None</code> if a suitable tag was not found.</p>
+<p><code>select_one</code> accepts a CSS selector string, a <code>Tag</code>/<code>BeautifulSoup</code> object, an optional <a href="#namespaces">namespace</a>
+dictionary, and <code>flags</code>.</p>
 <div class="codehilite"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">soupsieve</span> <span class="k">as</span> <span class="nn">sv</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sv</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;p:is(.a, .b, .c)&#39;</span><span class="p">,</span> <span class="n">soup</span><span class="p">)</span>
 <span class="go">&lt;p class=&quot;a&quot;&gt;Cat&lt;/p&gt;</span>
@@ -692,8 +707,10 @@
     <span class="sd">&quot;&quot;&quot;Select the specified tags.&quot;&quot;&quot;</span>
 </pre></div>
 
-<p><code>select</code> will return all tags under the given tag that match the given CSS selectors provided. You can also limit the number of tags returned by providing a positive integer via the <code>limit</code> parameter (0 means to return all tags).</p>
-<p><code>select</code> accepts a CSS selector string, a <code>Tag</code>/<code>BeautifulSoup</code> object, an optional <a href="#namespaces">namespace</a> dictionary, a <code>limit</code>, and <code>flags</code>.</p>
+<p><code>select</code> will return all tags under the given tag that match the given CSS selectors provided. You can also limit the
+number of tags returned by providing a positive integer via the <code>limit</code> parameter (0 means to return all tags).</p>
+<p><code>select</code> accepts a CSS selector string, a <code>Tag</code>/<code>BeautifulSoup</code> object, an optional <a href="#namespaces">namespace</a> dictionary,
+a <code>limit</code>, and <code>flags</code>.</p>
 <div class="codehilite"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">soupsieve</span> <span class="k">as</span> <span class="nn">sv</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sv</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;p:is(.a, .b, .c)&#39;</span><span class="p">,</span> <span class="n">soup</span><span class="p">)</span>
 <span class="go">[&lt;p class=&quot;a&quot;&gt;Cat&lt;/p&gt;, &lt;p class=&quot;b&quot;&gt;Dog&lt;/p&gt;, &lt;p class=&quot;c&quot;&gt;Mouse&lt;/p&gt;]</span>
@@ -710,15 +727,18 @@
     <span class="sd">&quot;&quot;&quot;Match closest ancestor to the provided tag.&quot;&quot;&quot;</span>
 </pre></div>
 
-<p><code>closest</code> returns the tag closest to the given tag that matches the given selector. The element found must be a direct ancestor of the tag or the tag itself.</p>
-<p><code>closest</code> accepts a CSS selector string, a <code>Tag</code>/<code>BeautifulSoup</code> object, an optional <a href="#namespaces">namespace</a> dictionary, and <code>flags</code>.</p>
+<p><code>closest</code> returns the tag closest to the given tag that matches the given selector. The element found must be a direct
+ancestor of the tag or the tag itself.</p>
+<p><code>closest</code> accepts a CSS selector string, a <code>Tag</code>/<code>BeautifulSoup</code> object, an optional <a href="#namespaces">namespace</a>
+dictionary, and <code>flags</code>.</p>
 <h2 id="soupsievematch"><code>soupsieve.match()</code><a class="headerlink" href="#soupsievematch" title="Permanent link"></a></h2>
 <div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">namespaces</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Match node.&quot;&quot;&quot;</span>
 </pre></div>
 
 <p>The <code>match</code> function matches a given tag with a given CSS selector.</p>
-<p><code>match</code> accepts a CSS selector string, a <code>Tag</code>/<code>BeautifulSoup</code> object, an optional <a href="#namespaces">namespace</a> dictionary, and flags.</p>
+<p><code>match</code> accepts a CSS selector string, a <code>Tag</code>/<code>BeautifulSoup</code> object, an optional <a href="#namespaces">namespace</a> dictionary,
+and flags.</p>
 <div class="codehilite"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nodes</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;p:is(.a, .b, .c)&#39;</span><span class="p">,</span> <span class="n">soup</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sv</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;p:not(.b)&#39;</span><span class="p">,</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="go">True</span>
@@ -731,8 +751,10 @@
     <span class="sd">&quot;&quot;&quot;Filter list of nodes.&quot;&quot;&quot;</span>
 </pre></div>
 
-<p><code>filter</code> takes an iterable containing HTML nodes and will filter them based on the provided CSS selector string. If given a <code>Tag</code>/<code>BeautifulSoup</code> object, it will iterate the direct children filtering them.</p>
-<p><code>filter</code> accepts a CSS selector string, an iterable containing nodes, an optional <a href="#namespaces">namespace</a> dictionary, and flags.</p>
+<p><code>filter</code> takes an iterable containing HTML nodes and will filter them based on the provided CSS selector string. If
+given a <code>Tag</code>/<code>BeautifulSoup</code> object, it will iterate the direct children filtering them.</p>
+<p><code>filter</code> accepts a CSS selector string, an iterable containing nodes, an optional <a href="#namespaces">namespace</a> dictionary,
+and flags.</p>
 <div class="codehilite"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sv</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="s1">&#39;p:not(.b)&#39;</span><span class="p">,</span> <span class="n">soup</span><span class="o">.</span><span class="n">div</span><span class="p">)</span>
 <span class="go">[&lt;p class=&quot;a&quot;&gt;Cat&lt;/p&gt;, &lt;p class=&quot;c&quot;&gt;Mouse&lt;/p&gt;]</span>
 </pre></div>
@@ -742,7 +764,8 @@
     &quot;&quot;&quot;Get comments only.&quot;&quot;&quot;
 </pre></div>
 
-<p>The <code>comments</code> function can be used to extract all comments from a document or document tag. It will return comments from the given tag down through all of its children.  You can limit how many comments are returned with <code>limit</code>.</p>
+<p>The <code>comments</code> function can be used to extract all comments from a document or document tag. It will return comments
+from the given tag down through all of its children.  You can limit how many comments are returned with <code>limit</code>.</p>
 <p><code>comments</code> accepts a <code>Tag</code>/<code>BeautifulSoup</code> object, a <code>limit</code>, and flags.</p>
 <h2 id="soupsieveicomments"><code>soupsieve.icomments()</code><a class="headerlink" href="#soupsieveicomments" title="Permanent link"></a></h2>
 <div class="codehilite"><pre><span></span>def icomments(node, limit=0, flags=0):
@@ -755,7 +778,8 @@
     <span class="sd">&quot;&quot;&quot;Compile CSS pattern.&quot;&quot;&quot;</span>
 </pre></div>
 
-<p><code>compile</code> will pre-compile a CSS selector pattern returning a <code>SoupSieve</code> object. The <code>SoupSieve</code> object has the same selector functions available via the module without the need to specify the selector, namespaces, or flags.</p>
+<p><code>compile</code> will pre-compile a CSS selector pattern returning a <code>SoupSieve</code> object. The <code>SoupSieve</code> object has the same
+selector functions available via the module without the need to specify the selector, namespaces, or flags.</p>
 <div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">SoupSieve</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Match tags in Beautiful Soup with CSS selectors.&quot;&quot;&quot;</span>
 
@@ -785,21 +809,28 @@
 </pre></div>
 
 <h2 id="soupsievepurge"><code>soupsieve.purge()</code><a class="headerlink" href="#soupsievepurge" title="Permanent link"></a></h2>
-<p>Soup Sieve caches compiled patterns for performance. If for whatever reason, you need to purge the cache, simply call <code>purge</code>.</p>
+<p>Soup Sieve caches compiled patterns for performance. If for whatever reason, you need to purge the cache, simply call
+<code>purge</code>.</p>
 <h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link"></a></h2>
-<p>Many of Soup Sieve's selector functions take an optional namespace dictionary. Namespaces, just like CSS, must be defined for Soup Sieve to evaluate <code>ns|tag</code> type selectors. This is analogous to CSS's namespace at-rule:</p>
+<p>Many of Soup Sieve's selector functions take an optional namespace dictionary. Namespaces, just like CSS, must be
+defined for Soup Sieve to evaluate <code>ns|tag</code> type selectors. This is analogous to CSS's namespace at-rule:</p>
 <div class="codehilite"><pre><span></span><span class="p">@</span><span class="k">namespace</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="o">)</span><span class="p">;</span>
 <span class="p">@</span><span class="k">namespace</span> <span class="nt">svg</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;http://www.w3.org/2000/svg&quot;</span><span class="o">)</span><span class="p">;</span>
 </pre></div>
 
-<p>A namespace dictionary should have keys (prefixes) and values (namespaces). An empty key string for a key would denote the default key.  An empty value would essentially represent a null namespace.  To represent the above CSS example for Soup Sieve, we would configure it like so:</p>
+<p>A namespace dictionary should have keys (prefixes) and values (namespaces). An empty key string for a key would denote
+the default key.  An empty value would essentially represent a null namespace.  To represent the above CSS example for
+Soup Sieve, we would configure it like so:</p>
 <div class="codehilite"><pre><span></span><span class="n">namespace</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.w3.org/1999/xhtml&quot;</span><span class="p">,</span>   <span class="c1"># Default namespace is for XHTML</span>
     <span class="s2">&quot;svg&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.w3.org/2000/svg&quot;</span><span class="p">,</span>  <span class="c1"># The SVG namespace defined with prefix of &quot;svg&quot;</span>
 <span class="p">}</span>
 </pre></div>
 
-<p>Tags do not necessarily have to have a prefix for Soup Sieve to recognize them.  For instance, in HTML5, SVG <em>should</em> automatically get the SVG namespace. Depending how namespaces were defined in the documentation, tags may inherit namespaces in some conditions.  Namespace assignment is mainly handled by the parser and exposed through the Beautiful Soup API. Soup Sieve uses the Beautiful Soup API to then compare namespaces for supported documents.</p>
+<p>Tags do not necessarily have to have a prefix for Soup Sieve to recognize them.  For instance, in HTML5, SVG <em>should</em>
+automatically get the SVG namespace. Depending how namespaces were defined in the documentation, tags may inherit
+namespaces in some conditions.  Namespace assignment is mainly handled by the parser and exposed through the Beautiful
+Soup API. Soup Sieve uses the Beautiful Soup API to then compare namespaces for supported documents.</p>
                 
                   
                 

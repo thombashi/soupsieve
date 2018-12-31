@@ -523,9 +523,15 @@
                 
                 <h1 id="soup-sieve">Soup Sieve<a class="headerlink" href="#soup-sieve" title="Permanent link"></a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link"></a></h2>
-<p>Soup Sieve is a CSS selector library designed to be used with <a href="https://beautiful-soup-4.readthedocs.io/en/latest/#">Beautiful Soup 4</a>. It aims to provide selecting, matching, and filtering using modern CSS selectors. Soup Sieve currently provides selectors from the CSS level 1 specifications up through the latest CSS level 4 drafts (though some are not yet implemented).</p>
-<p>While Beautiful Soup comes with a builtin CSS selection API, it is very basic and not without issues. It lacks support for many modern CSS features. Soup Sieve is planned to officially replace Beautiful Soup's current internal CSS selector implementation, but can also be imported in order to use its API directly.</p>
-<p>Soup Sieve implements most of the CSS selectors, though there are a number that don't make sense in a non-browser environment. Selectors that cannot provide meaningful functionality simply do not match anything. Some of the supported selectors are:</p>
+<p>Soup Sieve is a CSS selector library designed to be used with <a href="https://beautiful-soup-4.readthedocs.io/en/latest/#">Beautiful Soup 4</a>. It aims to provide selecting,
+matching, and filtering using modern CSS selectors. Soup Sieve currently provides selectors from the CSS level 1
+specifications up through the latest CSS level 4 drafts (though some are not yet implemented).</p>
+<p>While Beautiful Soup comes with a builtin CSS selection API, it is very basic and not without issues. It lacks support
+for many modern CSS features. Soup Sieve is planned to officially replace Beautiful Soup's current internal CSS selector
+implementation, but can also be imported in order to use its API directly.</p>
+<p>Soup Sieve implements most of the CSS selectors, though there are a number that don't make sense in a non-browser
+environment. Selectors that cannot provide meaningful functionality simply do not match anything. Some of the supported
+selectors are:</p>
 <ul>
 <li><code class="codehilite"><span class="p">.</span><span class="nc">classes</span></code></li>
 <li><code class="codehilite"><span class="p">#</span><span class="nn">ids</span></code></li>
@@ -607,7 +613,8 @@
 <span class="go">[&#39; These are animals &#39;]</span>
 </pre></div>
 
-<p>Selectors do not have to be constrained to one line either. You can span selectors over multiple lines just like you would in a CSS file.</p>
+<p>Selectors do not have to be constrained to one line either. You can span selectors over multiple lines just like you
+would in a CSS file.</p>
 <div class="codehilite"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">selector</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="gp">... </span><span class="s2">.a,</span>
 <span class="gp">... </span><span class="s2">.b,</span>
@@ -631,13 +638,17 @@
 <span class="go">[&lt;p class=&quot;a&quot;&gt;Cat&lt;/p&gt;, &lt;p class=&quot;b&quot;&gt;Dog&lt;/p&gt;, &lt;p class=&quot;c&quot;&gt;Mouse&lt;/p&gt;]</span>
 </pre></div>
 
-<p>If you've ever used Python's Re library for regular expressions, you may know that it is often useful to pre-compile a regular expression pattern, especially if you plan to use it more than once.  The same is true for Soup Sieve's matchers, though is not required.  If you have a pattern that you want to use more than once, it may be wise to pre-compile it early on:</p>
+<p>If you've ever used Python's Re library for regular expressions, you may know that it is often useful to pre-compile a
+regular expression pattern, especially if you plan to use it more than once.  The same is true for Soup Sieve's
+matchers, though is not required.  If you have a pattern that you want to use more than once, it may be wise to
+pre-compile it early on:</p>
 <div class="codehilite"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">selector</span> <span class="o">=</span> <span class="n">sv</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;p:is(.a, .b, .c)&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">selector</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">div</span><span class="p">)</span>
 <span class="go">[&lt;p class=&quot;a&quot;&gt;Cat&lt;/p&gt;, &lt;p class=&quot;b&quot;&gt;Dog&lt;/p&gt;, &lt;p class=&quot;c&quot;&gt;Mouse&lt;/p&gt;]</span>
 </pre></div>
 
-<p>A compiled object has all the same methods, though the parameters will be slightly different as they don't need things like the pattern or flags once compiled. See <a href="api/">API</a> documentation for more info.</p>
+<p>A compiled object has all the same methods, though the parameters will be slightly different as they don't need things
+like the pattern or flags once compiled. See <a href="api/">API</a> documentation for more info.</p>
 <p>Compiled patterns are cached, so if for any reason you need to clear the cache, simply issue the <code>purge</code> command.</p>
 <div class="codehilite"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sv</span><span class="o">.</span><span class="n">purge</span><span class="p">()</span>
 </pre></div>

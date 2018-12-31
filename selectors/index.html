@@ -555,9 +555,27 @@
                 <h1 id="css-selectors">CSS Selectors<a class="headerlink" href="#css-selectors" title="Permanent link"></a></h1>
 <h2 id="level-1-4-selectors">Level 1-4 Selectors<a class="headerlink" href="#level-1-4-selectors" title="Permanent link"></a></h2>
 <h3 id="html-and-xml-selectors">HTML and XML Selectors<a class="headerlink" href="#html-and-xml-selectors" title="Permanent link"></a></h3>
-<p>The CSS selectors are based off of the CSS level 4 specification. Primarily support has been added for selectors that were feasible to implement and most likely to get practical use. Selectors that cannot provide meaningful matches will match nothing. An example would be <code>:focus</code> which will match nothing because elements cannot be focused outside of a browser. Though most of the selectors have been implemented, there are still a few that have not.</p>
-<p>Below shows accepted selectors. When speaking about namespaces, they only apply to XML, XHTML, or when dealing with recognized foreign tags in HTML5. You must configure the CSS <a href="../api/#namespaces">namespaces</a> when attempting to evaluate namespaces.</p>
-<p>While an effort is made to mimic CSS selector behavior, there may be some differences or quirks, please report issues if any are found.</p>
+<p>The CSS selectors are based off of the CSS level 4 specification. Primarily support has been added for selectors that
+were feasible to implement and most likely to get practical use. Selectors that cannot provide meaningful matches will
+match nothing. An example would be <code>:focus</code> which will match nothing because elements cannot be focused outside of a
+browser. Though most of the selectors have been implemented, there are still a few that have not.</p>
+<p>Below shows accepted selectors. When speaking about namespaces, they only apply to XML, XHTML, or when dealing with
+recognized foreign tags in HTML5. You must configure the CSS <a href="../api/#namespaces">namespaces</a> when attempting to
+evaluate namespaces.</p>
+<p>While an effort is made to mimic CSS selector behavior, there may be some differences or quirks, please report issues if
+any are found.</p>
+<div class="admonition note">
+<p class="admonition-title">Experimental</p>
+<p>All selectors that are from the current working draft of CSS4 are considered experimental and are marked with
+<span class="lab"></span>. Additionally, if there are other immature selectors, they may be marked as experimental
+as well.</p>
+<p>Experimental may mean we are not entirely sure if our implementation is correct, that things may still be in flux
+as they are part of a working draft, or even both.</p>
+<p>If at anytime a working draft drops a selector from the current draft, it will most likely also be removed here,
+most likely with a deprecation path, except where there may be a conflict that requires a less graceful transition.
+One exception is in the rare case that the selector is found to be far too useful despite being rejected. In these
+cases, we may adopt them as "custom" selectors.</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -693,17 +711,17 @@
 <td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">a</span><span class="p">&gt;</span></code> element whose <code>href</code> attribute value contains the substring <code>sometext</code>.</td>
 </tr>
 <tr>
-<td><code>[attribute=value i]</code></td>
+<td><code class="lab">[attribute=value i]</code></td>
 <td><code class="codehilite"><span class="o">[</span><span class="nt">title</span><span class="o">=</span><span class="nt">flower</span> <span class="nt">i</span><span class="o">]</span></code></td>
 <td>Selects any element with a <code>title</code> that equals <code>flower</code> regardless of case.</td>
 </tr>
 <tr>
-<td><code>[attribute=value s]</code></td>
+<td><code class="lab">[attribute=value s]</code></td>
 <td><code class="codehilite"><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="nt">submit</span> <span class="nt">s</span><span class="o">]</span></code></td>
 <td>Selects any element with a <code>type</code> that equals <code>submit</code>. Case sensitivity will be forced.</td>
 </tr>
 <tr>
-<td><code>:empty</code></td>
+<td><code class="lab">:empty</code></td>
 <td><code class="codehilite"><span class="nt">p</span><span class="p">:</span><span class="nd">empty</span></code></td>
 <td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element that has no children and either no text. Whitespace and comments are ignored.</td>
 </tr>
@@ -718,17 +736,22 @@
 <td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element that is the first <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element of its parent.</td>
 </tr>
 <tr>
-<td><code>:has(&gt; sel, + sel)</code></td>
+<td><code class="lab">:has(&gt; sel, + sel)</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">has</span><span class="o">(&gt;</span> <span class="nt">div</span><span class="o">,</span> <span class="o">+</span> <span class="nt">p</span><span class="o">)</span></code></td>
 <td>Selects elements that have a direct child that is a <code class="codehilite"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code> or that have sibling of <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> immediately following.</td>
 </tr>
 <tr>
-<td><code>:is(sel, sel)</code></td>
+<td><code class="lab">:is(sel, sel)</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">is</span><span class="o">(</span><span class="nt">div</span><span class="o">,</span> <span class="p">.</span><span class="nc">some-class</span><span class="o">)</span></code></td>
-<td>Selects elements that are not <code class="codehilite"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code> and do not have class <code>some-class</code>. The alias <code>:matches</code> is allowed as well. In CSS4 <code>:where</code> is like <code>:is</code> except specificity is always zero. Soup Sieve doesn't care about specificity, so <code>:where</code> is exactly like <code>:is</code>.</td>
+<td>Selects elements that are not <code class="codehilite"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code> and do not have class <code>some-class</code>. The alias <code class="lab">:matches()</code> is currently allowed as well, but may be removed in the future.</td>
 </tr>
 <tr>
-<td><code>:lang(l1, l2)</code></td>
+<td><code>:lang(l1)</code></td>
+<td><code class="codehilite"><span class="p">:</span><span class="nd">lang</span><span class="o">(</span><span class="nt">en</span><span class="o">)</span></code></td>
+<td>Selects all elements with language <code>en</code>. Will also match <code>en-US</code>, and <code>en-GB</code>.</td>
+</tr>
+<tr>
+<td><code class="lab">:lang(l1, l2)</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">lang</span><span class="o">(</span><span class="s1">&#39;*-CH&#39;</span><span class="o">,</span> <span class="nt">en</span><span class="o">)</span></code></td>
 <td>Select all elements with language <code>de-CH</code>, <code>it-CH</code>, <code>fr-CH</code>, and <code>rm-CH</code>. Will also match <code>en</code>, <code>en-US</code>, and <code>en-GB</code>. See CSS4 specification for more info.</td>
 </tr>
@@ -743,19 +766,34 @@
 <td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element that is the last <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element of its parent.</td>
 </tr>
 <tr>
-<td><code>:not(sel, sel)</code></td>
+<td><code>:not(sel)</code></td>
+<td><code class="codehilite"><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="p">.</span><span class="nc">some-class</span><span class="o">)</span></code></td>
+<td>Selects elements that do not have class <code>some-class</code>.</td>
+</tr>
+<tr>
+<td><code class="lab">:not(sel, sel)</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="p">.</span><span class="nc">some-class</span><span class="o">,</span> <span class="p">#</span><span class="nn">some-id</span><span class="o">)</span></code></td>
 <td>Selects elements that do not have class <code>some-class</code> and ID <code>some-id</code>.</td>
 </tr>
 <tr>
-<td><code>:nth-child(an+b [of S]?)</code></td>
+<td><code>:nth-child(an+b)</code></td>
 <td><code class="codehilite"><span class="nt">p</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">2</span><span class="o">)</span></code></td>
-<td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element that is the second child of its parent. Please see CSS specification for more info on format.</td>
+<td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element that is the second child of its parent.</td>
 </tr>
 <tr>
-<td><code>:nth-last-child(an+b [of S]?)</code></td>
+<td><code class="lab">:nth-child(an+b [of S]?)</code></td>
+<td><code class="codehilite"><span class="nt">p</span><span class="p">:</span><span class="nd">nth-child</span><span class="o">(</span><span class="nt">2</span> <span class="nt">of</span> <span class="p">.</span><span class="nc">class</span><span class="o">)</span></code></td>
+<td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element that matches the provided <code>of S</code> selector and is the second child of its parent.</td>
+</tr>
+<tr>
+<td><code>:nth-last-child(an+b)</code></td>
 <td><code class="codehilite"><span class="nt">p</span><span class="p">:</span><span class="nd">nth-last-child</span><span class="o">(</span><span class="nt">2</span><span class="o">)</span></code></td>
-<td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element that is the second child of its parent, counting from the last child. Please see CSS specification for more info on format.</td>
+<td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element that is the second child of its parent, counting from the last child.</td>
+</tr>
+<tr>
+<td><code class="lab">:nth-last-child(an+b [of S]?)</code></td>
+<td><code class="codehilite"><span class="nt">p</span><span class="p">:</span><span class="nd">nth-last-child</span><span class="o">(</span><span class="nt">2</span> <span class="nt">of</span> <span class="p">.</span><span class="nc">class</span><span class="o">)</span></code></td>
+<td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> element that matches the provided <code>of S</code> selector and is the second child of its parent, counting from the last child. Please see CSS specification for more info on format.</td>
 </tr>
 <tr>
 <td><code>:nth-last-of-type(an+b)</code></td>
@@ -783,22 +821,25 @@
 <td>Selects the root element. In HTML, this is usually the <code class="codehilite"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span></code> element.</td>
 </tr>
 <tr>
-<td><code>:scope</code></td>
+<td><code class="lab">:scope</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">scope</span> <span class="nt">div</span></code></td>
 <td>Selects all <code class="codehilite"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code> elements under the current scope element. <code>:scope</code> is the element under match or select. In the case where a document (<code>BeautifulSoup</code> object, not a <code>Tag</code> object) is under select or match, <code>:scope</code> equals <code>:root</code>.</td>
+</tr>
+<tr>
+<td><code class="lab">:where(s1, s2)</code></td>
+<td><code class="codehilite"><span class="p">:</span><span class="nd">where</span><span class="o">(</span><span class="nt">div</span><span class="o">,</span> <span class="p">.</span><span class="nc">some-class</span><span class="o">)</span></code></td>
+<td>Selects elements that are not <code class="codehilite"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code> and do not have class <code>some-class</code>. In CSS4 <code>:where()</code> is like <code>:is</code> except specificity is always zero. Soup Sieve doesn't care about specificity, so <code>:where</code> is exactly like <code>:is</code>.</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition warning">
 <p class="admonition-title">Expensive Selectors</p>
-<p>Some selectors are more expensive to use than others. For instance, <code>:has()</code> can be a bit more expensive as <code>:has(a)</code> will search all children of every element to find if the element contains an <code class="codehilite"><span class="p">&lt;</span><span class="nt">a</span><span class="p">&gt;</span></code> element.</p>
-<p>While an effort is made to prioritize evaluation of less expensive selectors first in the hopes to invalidate the search early on and avoid evaluating expensive selectors unless needed, you should still try to be as specific as possible to limit how often expensive selectors are evaluated. For instance, using <code>p.special:has(a)</code> will limit evaluating <code>:has()</code> to only <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> elements that contain the <code>special</code> class.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">CSS4 Selectors</p>
-<p>In general, CSS4 specific features and selectors are not finalized in the official CSS4 specification, and may change in the future. While some are most likely quite stable, some may be less certain.</p>
-<p>Some implementations are based off our interpretation of the specification. It is possible our interpretation is incorrect. This is more likely with selectors that currently have no reference implementations in browsers, such as <code>:has()</code> and <code>of S</code> support in <code>:nth-child(an+b [of S]?)</code>. If any issues are discovered please report the issue with details and examples so we can get them right.</p>
-<p>If at anytime CSS4 drops a selector from the current draft, it will most likely also be removed here, except in the rare case that the selector is found to be far too useful despite being rejected.</p>
+<p>Some selectors are more expensive to use than others. For instance, <code>:has()</code> can be a bit more expensive as
+<code>:has(a)</code> will search all children of every element to find if the element contains an <code class="codehilite"><span class="p">&lt;</span><span class="nt">a</span><span class="p">&gt;</span></code> element.</p>
+<p>While an effort is made to prioritize evaluation of less expensive selectors first in the hopes to invalidate the
+search early on and avoid evaluating expensive selectors unless needed, you should still try to be as specific as
+possible to limit how often expensive selectors are evaluated. For instance, using <code>p.special:has(a)</code> will limit
+evaluating <code>:has()</code> to only <code class="codehilite"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span></code> elements that contain the <code>special</code> class.</p>
 </div>
 <div class="admonition danger">
 <p class="admonition-title">Not Implemented</p>
@@ -806,8 +847,10 @@
 <p>At-rules (<code>@page</code>, etc.) are not supported.</p>
 </div>
 <h3 id="html-only-selectors">HTML Only Selectors<a class="headerlink" href="#html-only-selectors" title="Permanent link"></a></h3>
-<p>There are a number of selectors that apply specifically to HTML documents. Such selectors will only match tags in HTML documents. Use of these selectors are not restricted from XML, but when used with XML documents, they will never match.</p>
-<p>Selectors that require states that only exist within a live HTML document, or are specifically tied to user interaction with a live document are allowed (if implemented), but will never match as well.</p>
+<p>There are a number of selectors that apply specifically to HTML documents. Such selectors will only match tags in HTML
+documents. Use of these selectors are not restricted from XML, but when used with XML documents, they will never match.</p>
+<p>Selectors that require states that only exist within a live HTML document, or are specifically tied to user interaction
+with a live document are allowed (if implemented), but will never match as well.</p>
 <table>
 <thead>
 <tr>
@@ -823,7 +866,7 @@
 <td>Active states are not applicable, so this will never match.</td>
 </tr>
 <tr>
-<td><code>:any-link</code></td>
+<td><code class="lab">:any-link</code></td>
 <td><code class="codehilite"><span class="nt">a</span><span class="p">:</span><span class="nd">any-link</span></code></td>
 <td>All links are treated as unvisited, so this will match every <code class="codehilite"><span class="p">&lt;</span><span class="nt">a</span><span class="p">&gt;</span></code> element with an <code>href</code> attribute.</td>
 </tr>
@@ -833,22 +876,22 @@
 <td>Selects every checked <code class="codehilite"><span class="p">&lt;</span><span class="nt">input</span><span class="p">&gt;</span></code> element.</td>
 </tr>
 <tr>
-<td><code>:current</code></td>
+<td><code class="lab">:current</code></td>
 <td><code class="codehilite"><span class="nt">p</span><span class="p">:</span><span class="nd">current</span></code></td>
 <td>As the document is not rendered, this will never match.</td>
 </tr>
 <tr>
-<td><code>:current(sel, sel)</code></td>
+<td><code class="lab">:current(sel, sel)</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">current</span><span class="o">(</span><span class="nt">p</span><span class="o">,</span> <span class="nt">li</span><span class="o">,</span> <span class="nt">dt</span><span class="o">,</span> <span class="nt">dd</span><span class="o">)</span></code></td>
 <td>As the document is not rendered, this will never match.</td>
 </tr>
 <tr>
-<td><code>:default</code></td>
+<td><code class="lab">:default</code></td>
 <td><code class="codehilite"><span class="nt">input</span><span class="p">:</span><span class="nd">default</span></code></td>
 <td>Selects all <code class="codehilite"><span class="p">&lt;</span><span class="nt">inputs</span><span class="p">&gt;</span></code> elements that are the default among their related elements. See CSS specification to learn more about all that this targets.</td>
 </tr>
 <tr>
-<td><code>:dir(direction)</code></td>
+<td><code class="lab">:dir(direction)</code></td>
 <td><code class="codehilite"><span class="nt">div</span><span class="p">:</span><span class="nd">dir</span><span class="o">(</span><span class="nt">ltr</span><span class="o">)</span></code></td>
 <td>Selects all <code class="codehilite"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span></code> elements that have a text direction of left to right.</td>
 </tr>
@@ -868,22 +911,32 @@
 <td>Focus states are not applicable, so this will never match.</td>
 </tr>
 <tr>
-<td><code>:future</code></td>
+<td><code class="lab">:focus-within</code></td>
+<td><code class="codehilite"><span class="nt">div</span><span class="p">:</span><span class="nd">focus-within</span></code></td>
+<td>Focus states are not applicable, so this will never match.</td>
+</tr>
+<tr>
+<td><code class="lab">:focus-visible</code></td>
+<td><code class="codehilite"><span class="nt">a</span><span class="p">:</span><span class="nd">focus-visible</span></code></td>
+<td>Focus states are not applicable, so this will never match.</td>
+</tr>
+<tr>
+<td><code class="lab">:future</code></td>
 <td><code class="codehilite"><span class="nt">p</span><span class="p">:</span><span class="nd">future</span></code></td>
 <td>As the document is not rendered, this will never match.</td>
 </tr>
 <tr>
-<td><code>:host</code></td>
+<td><code class="lab">:host</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">host</span></code></td>
 <td>Matches nothing as there is no Shadow DOM.</td>
 </tr>
 <tr>
-<td><code>:host(sel, sel)</code></td>
+<td><code class="lab">:host(sel, sel)</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">host</span><span class="o">(</span><span class="nt">h1</span><span class="o">)</span></code></td>
 <td>Matches nothing as there is no Shadow DOM.</td>
 </tr>
 <tr>
-<td><code>:host-context(sel, sel)</code></td>
+<td><code class="lab">:host-context(sel, sel)</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">host-context</span><span class="o">(</span><span class="nt">h1</span><span class="o">)</span></code></td>
 <td>Matches nothing as there is no Shadow DOM.</td>
 </tr>
@@ -893,47 +946,57 @@
 <td>Focus states are not applicable, so this will never match.</td>
 </tr>
 <tr>
+<td><code class="lab">:indeterminate</code></td>
+<td><code class="codehilite"><span class="nt">input</span><span class="p">:</span><span class="nd">indeterminate</span></code></td>
+<td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">input</span><span class="p">&gt;</span></code> element in an indeterminate state.</td>
+</tr>
+<tr>
+<td><code class="lab">:local-link</code></td>
+<td><code class="codehilite"><span class="nt">a</span><span class="p">:</span><span class="nd">local-link</span></code></td>
+<td>As there is no local URL associated with a document in Soup Sieve, this will match nothing.</td>
+</tr>
+<tr>
 <td><code>:link</code></td>
 <td><code class="codehilite"><span class="nt">a</span><span class="p">:</span><span class="nd">link</span></code></td>
 <td>All links are treated as unvisited, so this will match every <code class="codehilite"><span class="p">&lt;</span><span class="nt">a</span><span class="p">&gt;</span></code> element with an <code>href</code> attribute.</td>
 </tr>
 <tr>
-<td><code>:optional</code></td>
+<td><code class="lab">:optional</code></td>
 <td><code class="codehilite"><span class="nt">input</span><span class="p">:</span><span class="nd">optional</span></code></td>
 <td>Select every <code class="codehilite"><span class="p">&lt;</span><span class="nt">input</span><span class="p">&gt;</span></code> element without a <code>required</code> attribute.</td>
 </tr>
 <tr>
-<td><code>:past</code></td>
+<td><code class="lab">:past</code></td>
 <td><code class="codehilite"><span class="nt">p</span><span class="p">:</span><span class="nd">past</span></code></td>
 <td>As the document is not rendered, this will never match.</td>
 </tr>
 <tr>
-<td><code>:paused</code></td>
+<td><code class="lab">:paused</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">paused</span></code></td>
 <td>Pausing is not applicable in the Soup Sieve environment, so this will match nothing.</td>
 </tr>
 <tr>
-<td><code>:placeholder-shown</code></td>
+<td><code class="lab">:placeholder-shown</code></td>
 <td><code class="codehilite"><span class="nt">input</span><span class="p">:</span><span class="nd">placeholder-shown</span></code></td>
 <td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">input</span><span class="p">&gt;</span></code> element that is showing a placeholder via the <code>placeholder</code> attribute.</td>
 </tr>
 <tr>
-<td><code>:playing</code></td>
+<td><code class="lab">:playing</code></td>
 <td><code class="codehilite"><span class="p">:</span><span class="nd">playing</span></code></td>
 <td>Playing is not applicable in the Soup Sieve environment, so this will match nothing.</td>
 </tr>
 <tr>
-<td><code>:read-only</code></td>
+<td><code class="lab">:read-only</code></td>
 <td><code class="codehilite"><span class="nt">input</span><span class="p">:</span><span class="nd">read-only</span></code></td>
 <td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">input</span><span class="p">&gt;</span></code> element that is not editable by the user.</td>
 </tr>
 <tr>
-<td><code>:read-write</code></td>
+<td><code class="lab">:read-write</code></td>
 <td><code class="codehilite"><span class="nt">input</span><span class="p">:</span><span class="nd">read-write</span></code></td>
 <td>Selects every <code class="codehilite"><span class="p">&lt;</span><span class="nt">input</span><span class="p">&gt;</span></code> element that is editable by the user.</td>
 </tr>
 <tr>
-<td><code>:required</code></td>
+<td><code class="lab">:required</code></td>
 <td><code class="codehilite"><span class="nt">input</span><span class="p">:</span><span class="nd">required</span></code></td>
 <td>Select every <code class="codehilite"><span class="p">&lt;</span><span class="nt">input</span><span class="p">&gt;</span></code> element with a <code>required</code> attribute.</td>
 </tr>
@@ -943,7 +1006,12 @@
 <td>Elements cannot be targeted, so this will never match.</td>
 </tr>
 <tr>
-<td><code>:user-invalid</code></td>
+<td><code class="lab">:target-within</code></td>
+<td><code class="codehilite"><span class="nt">article</span><span class="p">:</span><span class="nd">target</span></code></td>
+<td>Elements cannot be targeted, so this will never match.</td>
+</tr>
+<tr>
+<td><code class="lab">:user-invalid</code></td>
 <td><code class="codehilite"><span class="nt">input</span><span class="p">:</span><span class="nd">user-invalid</span></code></td>
 <td>User interaction is not applicable, so this will never match.</td>
 </tr>
@@ -955,8 +1023,11 @@
 </tbody>
 </table>
 <h2 id="custom-selectors">Custom Selectors<a class="headerlink" href="#custom-selectors" title="Permanent link"></a></h2>
-<p>Below is a list of non-standard CSS selectors that we support. These can contain useful selectors that were rejected from the official CSS specifications, selectors implemented by other systems such as JQuery, or even selectors specifically created for Soup Sieve.</p>
-<p>Just because we include selectors from one source, does not mean we have intentions of implementing other selectors from the same such source.</p>
+<p>Below is a list of non-standard CSS selectors that we support. These can contain useful selectors that were rejected
+from the official CSS specifications, selectors implemented by other systems such as JQuery, or even selectors
+specifically created for Soup Sieve.</p>
+<p>Just because we include selectors from one source, does not mean we have intentions of implementing other selectors from
+the same such source.</p>
 <table>
 <thead>
 <tr>
@@ -980,8 +1051,25 @@
 </table>
 <div class="admonition warning">
 <p class="admonition-title">Contains</p>
-<p><code>:contains()</code> is an expensive operation as it scans all the text nodes of an element under consideration, which includes all descendants. Using highly specific selectors can reduce how often it is evaluated.</p>
+<p><code>:contains()</code> is an expensive operation as it scans all the text nodes of an element under consideration, which
+includes all descendants. Using highly specific selectors can reduce how often it is evaluated.</p>
 </div>
+<style>
+table tr > td code,
+table tr > td + td code {
+    white-space: nowrap;
+}
+
+.lab::before {
+    position: relative;
+    padding-right: .25rem;
+    font-family: FontAwesome;
+    -moz-osx-font-smoothing: initial;
+    -webkit-font-smoothing: initial;
+    font-weight: 400;
+    content: '\f0c3';
+}
+</style>
                 
                   
                 
