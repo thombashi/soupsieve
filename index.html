@@ -526,12 +526,12 @@
 <p>Soup Sieve is a CSS selector library designed to be used with <a href="https://beautiful-soup-4.readthedocs.io/en/latest/#">Beautiful Soup 4</a>. It aims to provide selecting,
 matching, and filtering using modern CSS selectors. Soup Sieve currently provides selectors from the CSS level 1
 specifications up through the latest CSS level 4 drafts (though some are not yet implemented).</p>
-<p>While Beautiful Soup comes with a builtin CSS selection API, it is very basic and not without issues. It lacks support
-for many modern CSS features. Soup Sieve is planned to officially replace Beautiful Soup's current internal CSS selector
-implementation, but can also be imported in order to use its API directly.</p>
-<p>Soup Sieve implements most of the CSS selectors, though there are a number that don't make sense in a non-browser
-environment. Selectors that cannot provide meaningful functionality simply do not match anything. Some of the supported
-selectors are:</p>
+<p>Soup Sieve was written with the intent to replace Beautiful Soup's builtin select feature, and as of Beautiful Soup
+version 4.7.0, it now is <img alt="🎊" class="emojione" src="https://cdn.jsdelivr.net/emojione/assets/4.0/png/64/1f38a.png" title=":confetti_ball:" />. Soup Sieve can also be imported in order to use its API directly for
+more controlled, specialized parsing.</p>
+<p>Soup Sieve has implemented most of the CSS selectors up through the level 4 drafts, though there are a number that don't
+make sense in a non-browser environment. Selectors that cannot provide meaningful functionality simply do not match
+anything. Some of the supported selectors are:</p>
 <ul>
 <li><code class="codehilite"><span class="p">.</span><span class="nc">classes</span></code></li>
 <li><code class="codehilite"><span class="p">#</span><span class="nn">ids</span></code></li>
@@ -543,19 +543,23 @@ selectors are:</p>
 <li><code class="codehilite"><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="nt">element</span><span class="p">.</span><span class="nc">class</span><span class="o">,</span> <span class="nt">element2</span><span class="p">.</span><span class="nc">class</span><span class="o">)</span></code></li>
 <li><code class="codehilite"><span class="p">:</span><span class="nd">is</span><span class="o">(</span><span class="nt">element</span><span class="p">.</span><span class="nc">class</span><span class="o">,</span> <span class="nt">element2</span><span class="p">.</span><span class="nc">class</span><span class="o">)</span></code></li>
 <li><code class="codehilite"><span class="nt">parent</span><span class="p">:</span><span class="nd">has</span><span class="o">(&gt;</span> <span class="nt">child</span><span class="o">)</span></code></li>
-<li>and many more</li>
+<li>and <a href="selectors/">many more</a></li>
 </ul>
-<p>Checkout <a href="selectors/">CSS Selectors</a> to see the full list.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link"></a></h2>
 <p>You must have Beautiful Soup already installed:</p>
 <div class="codehilite"><pre><span></span>pip install beautifulsoup4
 </pre></div>
 
-<p>Then use <code>pip</code> to install Soup Sieve:</p>
+<p>In most cases, assuming you've installed version 4.7.0, that should be all you need to do, but if you've installed via
+some alternative method, and Soup Sieve is not automatically installed for your, you can install it directly:</p>
 <div class="codehilite"><pre><span></span>pip install soupsieve
 </pre></div>
 
-<p>If you want to manually install it, run <code class="codehilite">python setup.py build</code> and <code class="codehilite">python setup.py install</code>.</p>
+<p>If you want to manually install it from source, navigate to the root of the project and run</p>
+<div class="codehilite"><pre><span></span>python setup.py build
+python setup.py install
+</pre></div>
+
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link"></a></h2>
 <p>To use Soup Sieve, you must create a <code>BeautifulSoup</code> object:</p>
 <div class="codehilite"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bs4</span>
